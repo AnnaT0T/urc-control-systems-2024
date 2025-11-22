@@ -31,6 +31,7 @@
 #include <libhal/stream_dac.hpp>
 #include <libhal/timer.hpp>
 #include <libhal/zero_copy_serial.hpp>
+#include <libhal-actuator/rc_servo.hpp>
 namespace sjsu::science {
 
 namespace resources {

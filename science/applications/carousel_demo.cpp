@@ -19,30 +19,23 @@ namespace sjsu::science {
 
         try{
             auto carousel_servo_ptr = resources::m_carousel_servo();
-            //carousel carousel_servo_one(carousel_servo_ptr);
-            int degrees = 0;
+            carousel carousel_servo_one(carousel_servo_ptr);
 
-            while(true) {
-                degrees += 5;
-                (*carousel_servo_ptr).position(degrees);
-                hal::delay(*clock, 100ms);
-            }
+            carousel_servo_one.home();
+            hal::print(*terminal, "Returned to home vial position\n");
+            hal::delay(*clock, 100ms);
 
-            //carousel_servo_one.home();
-            //hal::print(*terminal, "Returned to home vial position\n");
-            //hal::delay(*clock, 1000ms);
+            carousel_servo_one.step(5);
+            hal::print(*terminal, "Rotated 5 vials clockwise\n");
+            hal::delay(*clock, 100ms);
 
-            //carousel_servo_one.step(5);
-            //hal::print(*terminal, "Rotated 5 vials clockwise\n");
-            //hal::delay(*clock, 1000ms);
+            carousel_servo_one.step(3);
+            hal::print(*terminal, "Rotated 3 vials counterclockwise\n");
+            hal::delay(*clock, 100ms);
 
-            //carousel_servo_one.step(3);
-            //hal::print(*terminal, "Rotated 3 vials counterclockwise\n");
-            //hal::delay(*clock, 1000ms);
-
-            //carousel_servo_one.home();
-            //hal::print(*terminal, "Returned to home vial position\n");
-            //hal::delay(*clock, 1000ms);
+            carousel_servo_one.home();
+            hal::print(*terminal, "Returned to home vial position\n");
+            hal::delay(*clock, 100ms);
         }catch(hal::exception const& e ){
             hal::print<128>(*terminal, "error code: %d\n", e.error_code());
         }catch(std::exception const& e ){
